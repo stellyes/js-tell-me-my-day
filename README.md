@@ -9,6 +9,7 @@ Plan out your busy day with this convenient day planner within your browser! Get
 ## How to use
 
 By visiting the deployed website, you can immediately begin planning your events for the day by clicking on the area next to the hour you want to enter your event under. Then, press the save icon on the corresponding time slot, and your event is saved!
+
 [![ezgif-com-video-to-gif.gif](https://i.postimg.cc/TwBbdmwJ/ezgif-com-video-to-gif.gif)](https://postimg.cc/5YqypX8X)
 
 ## Author
