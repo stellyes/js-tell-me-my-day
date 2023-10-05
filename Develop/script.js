@@ -4,19 +4,13 @@ var currentTime = $("#currentDay"); // Parent
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 $(function () {
-  // Store entry in local data
-  $(".fa-save").on("click", function () {
-    var saveNoteID = $(this).parent().parent().attr("id"); // GETS HOUR-# ID
-    var saveNote = $(`#${saveNoteID}`).children(".description").text(); // how to get value ?
-    localStorage.setItem(saveNoteID, saveNote);
-  });
+  // For every avaiable hour, I want to ...
+  for (var i = 9; i < 18; i++) {
+    let tempAppointment = localStorage.getItem(`hour-${i}`); // Get appointment from localStorage
+    $(`#hour-${i}`).children("textarea").val(tempAppointment); // Fill text area with appointment value
+  }
 
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-
+  // Gets current time's hour counter, in 24 hour format
   var now = dayjs().format("HH");
   for (var i = 9; i < 18; i++) {
     // All elements are default class "future", gets adjusted based on dayjs() time
@@ -27,10 +21,14 @@ $(function () {
     }
   }
 
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
+  //On save click, save current note into localStorage
+  $(".fa-save").on("click", function () {
+    let buttonEl = $(this).parent(); // Clicks occur on child <i> element in button
+    let hourID = $(buttonEl).parent().attr("id"); // Get ID of parent element of button
+    let note = $(`#${hourID}`).children("textarea").val(); // get value in textarea
+    localStorage.setItem(hourID, note); // push to localStorage
+  });
 
-  // TODO: Add code to display the current date in the header of the page.
+  // Displays current time in header of document
   currentTime.text(dayjs().format("MMMM D, YYYY"));
 });
